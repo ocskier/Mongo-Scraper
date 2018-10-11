@@ -26,12 +26,12 @@ console.log(MONGODB_URI);
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // Set Handlebars.
-import exphbs from "express-handlebars";
+const exphbs = require("express-handlebars");
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-import routes from "./routes/routes.js";
+const routes = require("./routes/routes.js");
 
 app.use(routes);
 
