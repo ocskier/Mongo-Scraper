@@ -1,0 +1,26 @@
+<div id="wrapper" class="row">
+  <div id="articles" class="col-9">
+    {{#each articles}}
+      <div class="w3-card-4" style="margin:12px 0">
+        <a href={{link}}>
+          <header class="w3-container w3-blue">
+            <h1>{{title}}</h1>
+          </header>
+        </a>
+          <div class="w3-container">
+            <p>{{summary}}</p>
+          </div>
+        
+          <footer id={{_id}} class="w3-container w3-blue">
+            <h5>{{date}}<button id="open-note" data-id={{_id}} style="float: right">Note</button></h5>
+            {{#note}}
+              <h5 style="color: black;background: floralwhite;">{{date}}<br>{{title}}: {{body}}</h5>
+            {{/note}}
+          </footer>
+      </div>
+    {{/each}}
+  </div>
+  <div id="notes" class="col-3"></div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="app.js"></script>
