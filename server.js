@@ -1,8 +1,8 @@
-import {} from 'dotenv/config'
+require('dotenv').config();
 
-import express from "express";
-import logger from "morgan";
-import mongoose from "mongoose";
+const express = require("express");
+const logger = require("morgan");
+const mongoose = require("mongoose");
 
 const PORT = 8080;
 
