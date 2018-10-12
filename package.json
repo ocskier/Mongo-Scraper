@@ -4,9 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "build": "babel app -d app/dist",
-    "start": "node dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
     "watch": "nodemon server.js"
   },
   "author": "",

@@ -31,7 +31,7 @@ import exphbs from "express-handlebars";
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-import routes from "./routes/routes.js";
+import routes from "./app/routes/routes.js";
 
 app.use(routes);
 
