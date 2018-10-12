@@ -39,19 +39,24 @@ router.get("/scrape", (req, res) => {
     const $ = cheerio.load(response.data);
 
     // Now, we grab every h2 within an article tag, and do the following:
-    $("article h2").each(function(i, element) {
+    $("article", ".list-overflow").each(function(i, element) {
         // Save an empty result object
         var result = {};
 
         // Add the text and href of every link, and save them as properties of the result object
         result.title = $(this)
+            .children(".item-info")
+            .children("h2")
             .children("a")
             .text();
         result.link = $(this)
+            .children(".item-info")
+            .children("h2")
             .children("a")
             .attr("href");
         result.date = $(this)
-            .next()
+            .children(".item-info")
+            .children("p")
             .children("a")
             .contents()
             .eq(0)
@@ -59,12 +64,21 @@ router.get("/scrape", (req, res) => {
             .replace("•", "")
             .trim();
         result.summary = $(this)
-            .next()
+            .children(".item-info")
+            .children("p")
             .children("a")
             .contents()
             .eq(1)
             .text();
+        result.image = $(this)
+            .children(".item-image")
+            .first()
+            .contents()
+            .children('a')
+            .children('img')
+            .attr('src');
 
+        console.log(result);
         // Create a new Article using the `result` object built require scraping
         db.Article.create(result)
         .then(function(dbArticle) {

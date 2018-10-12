@@ -14,13 +14,14 @@ $(document).on("click", "#scrape-btn", function() {
 
 $(document).on("click", "#cancel-btn", function() {
   // Empty the notes from the note section
-  $("#notes").empty();
+  $("#notes").remove();
 });
 
 
 $(document).on("click", "#open-note", function() {
   // Empty the notes from the note section
-  $("#notes").empty();
+  $("#notes").remove();
+  $("#wrapper").append('<div id="notes" class="col-3"></div>');
   // Save the id from the p tag
   var thisId = $(this).attr("data-id");
 
