@@ -76,7 +76,7 @@ $(document).on("click", "#savenote", function() {
       console.log(newNote);
       // Empty the notes section
       $("#notes").empty();
-      $("#"+data._id).append(`<h5 style="color: black;background: floralwhite;">${moment(newNote.date).format("MMMM Do YYYY HH:mm:ss")}<br>${newNote.title}: ${newNote.body}</h5>`);
+      $("#"+data._id).append(`<h5 style="color: black;background: floralwhite;">${newNote.date}<br>${newNote.title}: ${newNote.body}</h5>`);
     });
 
   // Also, remove the values entered in the input and textarea for note entry
