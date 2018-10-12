@@ -1,8 +1,8 @@
-import {} from 'dotenv/config'
+require ('dotenv').config();
 
-import express from "express";
-import logger from "morgan";
-import mongoose from "mongoose";
+const express = require("express");
+const logger = require("morgan");
+const mongoose = require("mongoose");
 
 const PORT = 8080;
 
@@ -26,12 +26,12 @@ console.log(MONGODB_URI);
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // Set Handlebars.
-import exphbs from "express-handlebars";
+const exphbs = require("express-handlebars");
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-import routes from "./app/routes/routes.js";
+const routes = require("./app/routes/routes.js");
 
 app.use(routes);
 
