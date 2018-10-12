@@ -1,15 +1,15 @@
 // Our scraping tools
 // Axios is a promised-based http library, similar to jQuery's Ajax method
 // It works on the client and on the server
-import axios from "axios";
-import cheerio from "cheerio";
+const axios = require ("axios");
+const cheerio = require ("cheerio");
 
-import express from "express";
+const express = require ("express");
 
 const router = express.Router();
 
 // Requiring our models
-import db from "../models";
+const db = require ("../models");
 
 router.get("/", (req, res) => {
     db.Article.find({})
@@ -65,7 +65,7 @@ router.get("/scrape", (req, res) => {
             .eq(1)
             .text();
 
-        // Create a new Article using the `result` object built from scraping
+        // Create a new Article using the `result` object built require scraping
         db.Article.create(result)
         .then(function(dbArticle) {
             // View the added result in the console
@@ -83,7 +83,7 @@ router.get("/scrape", (req, res) => {
     });
 });
 
-// Route for getting all Articles from the db
+// Route for getting all Articles require the db
 router.get("/articles", (req, res) =>
 // Grab every document in the Articles collection
     getAllArticles(res)
