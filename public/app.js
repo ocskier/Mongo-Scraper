@@ -66,7 +66,7 @@ $(document).on("click", "#savenote", function() {
       title: $("#titleinput").val(),
       // Value taken from note textarea
       body: $("#bodyinput").val(),
-      date: Date.now()
+      date: moment().format("MMMM Do YYYY HH:mm:ss")
     }
   })
     // With that done
