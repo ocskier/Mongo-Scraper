@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "build": "babel app/ -d ./dist",
-    "start": "node ./dist/app/server.js",
+    "start": "node dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "nodemon server.js"
   },
