@@ -20,7 +20,7 @@
             </div>
           </div>
           <footer id={{_id}} class="w3-container w3-blue">
-            <h5>{{date}}<button id="open-note" data-id={{_id}} style="float: right">Note</button></h5>
+            <h5>{{date}}<button data-target="modal1" class="modal-trigger" id="open-note" data-id={{_id}} style="float: right">Note</button></h5>
             {{#note}}
             <h5 style="color: black;background: floralwhite;">{{date}}<br>{{title}}: {{body}}</h5>
             {{/note}}
@@ -28,7 +28,36 @@
         </div>
     {{/each}}
   </div>
+  <div id="modal1" class="modal" style="max-height: 50%">
+      <div id="noteCard" class="modal-content" data-planid="" style="margin:0 auto">
+          <div class="modal-content" style="padding: 0 8px">
+            <h4 class="center">Note</h4>
+            <p class="grey-text text-darken-4" style="font-size: 18px"></p>
+            {{!-- // An input to enter a new title --}}
+            <input id='titleinput' name='title' placeholder="Subject">
+            {{!-- A textarea to add a new note body --}}
+            <textarea id='bodyinput' name='body' placeholder="Add a Note"></textarea>
+          </div>
+          <div class="modal-footer" style="display:block;padding-top:10px">
+              <a href="#!" id="cancel-btn" class="modal-close waves-effect waves-green left"><button>Exit</button></a>
+              {{!-- A button to submit a new note, with the id of the article saved to it --}}
+              <a href="#!" id='savenote' class="modal-close waves-effect waves-green"><button>Save</button></a>
+          </div>
+      </div>
+  </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="app.js"></script>
+
+<script>
+  (function($){
+    $(function(){
+
+      $('.sidenav').sidenav();
+      M.AutoInit();
+
+    }); // end of document ready
+  })(jQuery); // end of jQuery name space
+</script>
