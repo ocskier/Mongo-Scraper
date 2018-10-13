@@ -14,7 +14,8 @@ $(document).on("click", "#scrape-btn", function() {
 
 $(document).on("click", "#cancel-btn", function() {
   // Empty the notes from the note section
-  $("#notes").remove();
+  $("#titleinput").val("");
+  $("#bodyinput").val("");
 });
 
 
