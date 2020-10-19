@@ -12,13 +12,12 @@ const router = express.Router();
 const db = require ("../models");
 
 router.get("/", (req, res) => {
-    db.Article.find({})
+    db.Article.find({}).lean()
         .populate("note")
         .then(dbArticle => {
             let hdbrsObj = {
                 articles: dbArticle
-            }
-            console.log(hdbrsObj);
+            };
             if (hdbrsObj.articles.length === 0) {
                 res.render("scrape", {});
             } else {
@@ -39,23 +38,20 @@ router.get("/scrape", (req, res) => {
     const $ = cheerio.load(response.data);
 
     // Now, we grab every h2 within an article tag, and do the following:
-    $("article", ".list-overflow").each(function(i, element) {
+    $("article.item.has-image").each(function(i, element) {
         // Save an empty result object
         var result = {};
-
+        let infoDiv = $(this).children(".item-info-wrap").children(".item-info");
         // Add the text and href of every link, and save them as properties of the result object
-        result.title = $(this)
-            .children(".item-info")
-            .children("h2")
+        result.title = infoDiv
+            .children(".title")
             .children("a")
             .text();
-        result.link = $(this)
-            .children(".item-info")
-            .children("h2")
+        result.link = infoDiv
+            .children(".title")
             .children("a")
             .attr("href");
-        result.date = $(this)
-            .children(".item-info")
+        result.date = infoDiv
             .children("p")
             .children("a")
             .contents()
@@ -63,8 +59,7 @@ router.get("/scrape", (req, res) => {
             .text()
             .replace("•", "")
             .trim();
-        result.summary = $(this)
-            .children(".item-info")
+        result.summary = infoDiv
             .children("p")
             .children("a")
             .contents()
